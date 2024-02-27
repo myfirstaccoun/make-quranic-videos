@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@700&display=swap');
+
+body {
+    font-family: Tajawal, "sans-serif";
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.input-file-cont {
+    position: absolute;
+    top: 100px;
+    right: calc(50% - 73px);
+    width: 146px;
+    height: 39px;
+    background-color: #255fff;
+    color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.input-file-cont * {
+    cursor: pointer;
+}
+
+.input-file-cont h3 {
+    position: relative;
+    top: 2px;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.input-file-cont input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1000;
+}
+
+
+
+
+.edit-cont {
+    position: absolute;
+    top: 70px;
+    right: calc(50% - 150px);
+    width: 220px;
+    border-radius: 15px;
+    background-color: rgb(223, 189, 0);
+    padding: 20px 40px;
+    justify-content: center;
+}
+
+.edit-cont select.surah-name {
+    width: 100%;
+    margin-left: 0px;
+}
+
+.edit-cont label {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}
+
+.edit-cont .reader-name-input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.edit-cont input {
+    position: relative;
+    width: 60px;
+    text-align: center;
+}
+
+.edit-cont select {
+    position: relative;
+    width: calc(100% - 68px);
+    margin-bottom: 10px;
+    margin-left: 4px;
+    padding-left: 10px;
+}
+
+.edit-cont .add-verse, .edit-cont .submit-edit, .edit-cont .download-video {
+    border-radius: 15px;
+    padding: 5px;
+    margin-top: 10px;
+    text-align: center;
+    border: 3px solid white;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    display: block;
+}
+
+.edit-cont .download-video {
+    display: none;
+    text-decoration: none;
+}
