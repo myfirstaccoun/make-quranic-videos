@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عمل مقاطع قرآنية</title>
+    <link rel="stylesheet" href="/public/css/all.css">
+    <!-- <script defer src="/public/js/all.js"></script> -->
+</head>
+<body>
+    <form action="/upload" method="post" enctype="multipart/form-data" class="input-file-cont">
+        <input type="file" name="videoFile" accept="video/*">
+        <h3>ارفع المقطع</h3>
+        <button style="display: none;" type="submit"></button>
+    </form>
+
+    <form class="edit-cont">
+        <select class="surah-name">
+            <option value="Surah Al fatíha">1- سورة الفاتحة</option>
+            <option value="Surah Al Báqarah">2- سورة البقرة</option>
+            <option value="Surah Alí Imran">3- سورة آل عمران</option>
+            <option value="Surah An Nísa">4- سورة النساء</option>
+            <option value="Surah Al Maeda">5- سورة المائدة</option>
+            <option value="Surah Al Anam">6- سورة الأنعام</option>
+            <option value="Surah Al Araf">7- سورة الأعراف</option>
+            <option value="Surah Al Anfál">8- سورة الأنفال</option>
+            <option value="Surah At Taueba">9- سورة التوبة</option>
+            <option value="Surah Yunus">10- سورة يونس</option>
+            <option value="Surah Hud">11- سورة هود</option>
+            <option value="Surah Yúsuf">12- سورة يوسف</option>
+            <option value="Surah Ar rad">13- سورة الرعد</option>
+            <option value="Surah Ibrahim">14- سورة ابراهيم</option>
+            <option value="Surah Al Hijr">15- سورة الحجر</option>
+            <option value="Surah An Nahl">16- سورة النحل</option>
+            <option value="Surah Al Isra">17- سورة الإسراء</option>
+            <option value="Surah Al Kahf">18- سورة الكهف</option>
+            <option value="Surah Maryam">19- سورة مريم</option>
+            <option value="Surah Ta Ha">20- سورة طه</option>
+            <option value="Surah Al Anbiya">21- سورة الأنبياء</option>
+            <option value="Surah Al Hayy">22- سورة الحج</option>
+            <option value="Surah Al Moeminún">23- سورة المؤمنون</option>
+            <option value="Surah An Núr">24- سورة النور</option>
+            <option value="Surah Al Forkan">25- سورة الفرقان</option>
+            <option value="Surah Ach Chóara">26- سورة الشعراء</option>
+            <option value="Surah An Naml">27- سورة النمل</option>
+            <option value="Surah Al Qasas">28- سورة القصص</option>
+            <option value="Surah Al Ankabút">29- سورة العنكبوت</option>
+            <option value="Surah Al Rúm">30- سورة الروم</option>
+            <option value="Surah Luqmán">31- سورة لقمان</option>
+            <option value="Surah As Sajdah">32- سورة السجدة</option>
+            <option value="Surah Al Ahzáb">33- سورة الأحزاب</option>
+            <option value="Surah Saba">34- سورة سبإ</option>
+            <option value="Surah Fatír">35- سورة فاطر</option>
+            <option value="Surah Yasin">36- سورة يس</option>
+            <option value="Surah As Saffát">37- سورة الصافات</option>
+            <option value="Surah Sad">38- سورة ص</option>
+            <option value="Surah Az Zómar">39- سورة الزمر</option>
+            <option value="Surah Ghafir">40- سورة غافر</option>
+            <option value="Surah Fussilat">41- سورة فصلت</option>
+            <option value="Surah Ach Chúra">42- سورة الشورى</option>
+            <option value="Surah Az Zojrof">43- سورة الزخرف</option>
+            <option value="Surah Ad Dójan">44- سورة الدخان</option>
+            <option value="Surah Al Yacia">45- سورة الجاثية</option>
+            <option value="Surah Al Ahcaf">46- سورة الأحقاف</option>
+            <option value="Surah Mohamed">47- سورة محمد</option>
+            <option value="Surah Al Fath">48- سورة الفتح</option>
+            <option value="Surah Al Hoyorat">49- سورة الحجرات</option>
+            <option value="Surah Qaf">50- سورة ق</option>
+            <option value="Surah Ad Zariyat">51- سورة الذاريات</option>
+            <option value="Surah At Túr">52- سورة الطور</option>
+            <option value="Surah An Najm">53- سورة النجم</option>
+            <option value="Surah Al Camar">54- سورة القمر</option>
+            <option value="Surah Al Ráhman">55- سورة الرحمن</option>
+            <option value="Surah Al Waqia">56- سورة الواقعة</option>
+            <option value="Surah Al Hadid">57- سورة الحديد</option>
+            <option value="Surah Al Moyadíla">58- سورة المجادلة</option>
+            <option value="Surah Al Hachr">59- سورة الحشر</option>
+            <option value="Surah Al Momtahana">60- سورة الممتحنة</option>
+            <option value="Surah As Saff">61- سورة الصف</option>
+            <option value="Surah Al Yomoa">62- سورة الجمعة</option>
+            <option value="Surah Al Monafiqún">63- سورة المنافقون</option>
+            <option value="Surah At Tagabon">64- سورة التغابن</option>
+            <option value="Surah At Tálaq">65- سورة الطلاق</option>
+            <option value="Surah At Tahrim">66- سورة التحريم</option>
+            <option value="Surah Al Mulk">67- سورة الملك</option>
+            <option value="Surah Al Calam">68- سورة القلم</option>
+            <option value="Surah Al Haqah">69- سورة الحاقة</option>
+            <option value="Surah Al Ma'arij">70- سورة المعارج</option>
+            <option value="Surah Noh">71- سورة نوح</option>
+            <option value="Surah Al Yinn">72- سورة الجن</option>
+            <option value="Surah Al Mozzamil">73- سورة المزمل</option>
+            <option value="Surah Al Modacer">74- سورة المدثر</option>
+            <option value="Surah Al Qiyamah">75- سورة القيامة</option>
+            <option value="Surah Al Insán">76- سورة الانسان</option>
+            <option value="Surah Al Mursalát">77- سورة المرسلات</option>
+            <option value="Surah An Naba">78- سورة النبإ</option>
+            <option value="Surah An Nazi'at">79- سورة النازعات</option>
+            <option value="Surah Abasa">80- سورة عبس</option>
+            <option value="Surah At Takuér">81- سورة التكوير</option>
+            <option value="Surah Al Infitar">82- سورة الإنفطار</option>
+            <option value="Surah Al Mutaffifin">83- سورة المطففين</option>
+            <option value="Surah Al Enchicaq">84- سورة الإنشقاق</option>
+            <option value="Surah Al Boruy">85- سورة البروج</option>
+            <option value="Surah At Táriq">86- سورة الطارق</option>
+            <option value="Surah Al Ala">87- سورة الأعلى</option>
+            <option value="Surah Al Gachia">88- سورة الغاشية</option>
+            <option value="Surah Al Fayr">89- سورة الفجر</option>
+            <option value="Surah Al Balad">90- سورة البلد</option>
+            <option value="Surah Ach Chams">91- سورة الشمس</option>
+            <option value="Surah Al Lail">92- سورة الليل</option>
+            <option value="Surah Ad Duha">93- سورة الضحى</option>
+            <option value="Surah Ach Charh">94- سورة الشرح</option>
+            <option value="Surah At Tín">95- سورة التين</option>
+            <option value="Surah Al Alaq">96- سورة العلق</option>
+            <option value="Surah Al Qadr">97- سورة القدر</option>
+            <option value="Surah Al baena">98- سورة البينة</option>
+            <option value="Surah Az Zalzalah">99- سورة الزلزلة</option>
+            <option value="Surah Al Adiyat">100- سورة العاديات</option>
+            <option value="Surah Al Carea">101- سورة القارعة</option>
+            <option value="Surah At Takacir">102- سورة التكاثر</option>
+            <option value="Surah Al Asr">103- سورة العصر</option>
+            <option value="Surah Al Humazah">104- سورة الهمزة</option>
+            <option value="Surah Al Fil">105- سورة الفيل</option>
+            <option value="Surah Coraich">106- سورة قريش</option>
+            <option value="Surah Al Maun">107- سورة الماعون</option>
+            <option value="Surah Al Kauzar">108- سورة الكوثر</option>
+            <option value="Surah Al Kafirun">109- سورة الكافرون</option>
+            <option value="Surah Al Nasr">110- سورة النصر</option>
+            <option value="Surah Al Masad">111- سورة المسد</option>
+            <option value="Surah Al Ikhlas">112- سورة الإخلاص</option>
+            <option value="Surah Al Falaq">113- سورة الفلق</option>
+            <option value="Surah An Nás">114- سورة الناس</option>
+        </select>
+        
+        <label>إسم القارئ</label>
+        <br>
+        <input class="reader-name-input" type="text" value="Ahmed nefies">
+
+        <div class="add-verse">إضافة</div>
+        <div class="submit-edit">عمل المقطع</div>
+        <a href="" class="download-video">تنزيل المقطع</a>
+    </form>
+</body>
+<script>
+    function allIndexInArr(arr, item) {
+        let ind = [];
+        for(let i = 0; i < arr.length; i++) {
+            if(typeof(item) == "object" && typeof(arr[i]) == "object") {
+                JSON.stringify(arr[i]) == JSON.stringify(item)? ind.push(i) : "";
+            } else {
+                arr[i] == item? ind.push(i) : "";
+            }
+        }
+
+        return ind;
+    }
+
+    function inArr(arr, item) {
+        return allIndexInArr(arr, item).length > 0? true : false;
+    }
+
+    function searchInObjArr(arr, key_want_search, value_want_search) { // [ {"id": 1, "num": 453}, {"id": 2, "num": 734} ], id == 1 ==> [  [ {"id": 1, "num": 453} ], [0]  ]
+        let res = [];
+        let ind = [];
+
+        let i = 0;
+        while(i < arr.length) {
+            let item = arr[i];
+            if(typeof item == "object" && JSON.stringify(item)[0] == "{") {
+                if(key_want_search in item) {
+                    if(item[key_want_search] == value_want_search) {
+                        res.push(item)
+                        ind.push(i)
+                    }
+                }
+            }
+
+            i++;
+        }
+
+        return [res, ind]
+    }
+
+    function select_settings() {
+        let verses_num;
+        if(surah_values.indexOf(surah_select.value) > -1) {
+            verses_num = quran_translate_sp[surah_values.indexOf(surah_select.value)]["ayat"].length;
+        } else {
+            verses_num = -1;
+        }
+
+        // الغاء أرقام الآيات في اختيار رقم الآية
+        document.querySelectorAll(".edit-cont div select").forEach((select_element) => {
+            let tmp_length = select_element.querySelectorAll("option").length;
+            if(tmp_length > verses_num+2) {
+                let i = 0;
+                while(i < tmp_length-verses_num-2) {
+                    select_element.querySelectorAll("option")[select_element.querySelectorAll("option").length-1].remove();
+                    i++;
+                }
+            }
+        });
+        
+        // وضع أرقام الآيات في اختيار رقم الآية
+        if(surah_values.indexOf(surah_select.value) > -1) {
+            document.querySelectorAll(".edit-cont div select").forEach((select_element) => {
+                let tmp_length = select_element.querySelectorAll("option").length;
+
+                let i = tmp_length-2;
+                while(i < verses_num) {
+                    let tmpOption_element = document.createElement("option");
+                    tmpOption_element.setAttribute("value", i+1);
+                    tmpOption_element.innerHTML = i+1;
+                    select_element.appendChild(tmpOption_element);
+
+                    i++;
+                }
+            });
+        }
+
+        // الغاء النص عند الضغط على الغاء
+        document.querySelectorAll(".edit-cont div select").forEach((item) => {
+            item.onchange = (eo) => {
+                if(eo.target.value == "الغاء") {
+                    eo.target.parentNode.remove();
+                }
+            }
+        });
+    }
+
+    function add_caption() {
+        let addBtn = document.querySelector(".edit-cont .add-verse");
+        let submitBtn = document.querySelector(".edit-cont .submit-edit");
+        let downloadBtn = document.querySelector(".edit-cont .download-video");
+        addBtn.remove();
+        submitBtn.remove();
+        downloadBtn.remove();
+
+        let container = document.createElement("div");
+
+        let timeInput = document.createElement("input");
+        timeInput.setAttribute("type", "text");
+        timeInput.setAttribute("maxlength", "8");
+        timeInput.setAttribute("value", "00:00:00");
+        
+        let select = document.createElement("select");
+        
+        let option = document.createElement("option");
+        option.setAttribute("value", "اختر رقم الآية");
+        option.innerText = "اختر رقم الآية";
+        select.appendChild(option);
+        
+        option = document.createElement("option");
+        option.setAttribute("value", "الغاء");
+        option.innerText = "الغاء";
+        select.appendChild(option);
+        
+        container.appendChild(timeInput);
+        container.appendChild(select);
+        document.querySelector(".edit-cont").appendChild(container);
+        document.querySelector(".edit-cont").appendChild(addBtn);
+        document.querySelector(".edit-cont").appendChild(submitBtn);
+        document.querySelector(".edit-cont").appendChild(downloadBtn);
+    }
+
+    function secondsToTime(seconds) {
+        let hours = Math.floor(seconds / 3600);
+        let minutes = Math.floor((seconds - (hours * 3600)) / 60);
+        let remainingSeconds = seconds - (hours * 3600) - (minutes * 60);
+        
+        // إضافة صفر إذا كان العدد أقل من 10
+        hours = (hours < 10) ? "0" + hours : hours;
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
+        remainingSeconds = (remainingSeconds < 10) ? "0" + remainingSeconds : remainingSeconds;
+        
+        return hours + ':' + minutes + ':' + remainingSeconds;
+    }
+
+    function postData(data, post_path="/submit", method="application/json") {
+        let myData = "";
+        if(method == "application/json") {
+            myData = JSON.stringify({ page_data: data });
+        } else {
+            myData = data;
+        }
+
+        let options = {
+            method: 'POST',
+            body: myData
+        };
+
+        // إذا كان نوع المحتوى multipart/form-data، فلا حاجة لتحويل البيانات إلى JSON
+        if (method !== "multipart/form-data") {
+            options.headers = {
+                'Content-Type': method,
+            };
+        }
+
+        return fetch(post_path, options)
+            .then(response => {
+                // إذا كان نوع الاستجابة JSON، استخدم response.json()
+                if (response.headers.get('content-type').includes('application/json')) {
+                    return response.json();
+                } else {
+                    // في حالة غير ذلك، استخدم response.text()
+                    return response.text();
+                }
+            })
+            .catch((error) => {
+                console.error('حدث خطأ:', error);
+            });
+    }
+
+
+    let quran_translate_sp = JSON.parse(`<%= your_data %>`.split("&#34;").join("\"").split("&#39;").join("'"));
+    let video_duration = 0;
+    let video_path = "";
+    let surah_values = [];
+    document.querySelectorAll(".surah-name option").forEach((e) => {
+        if(e.getAttribute("value") != "اختر السورة") {
+            surah_values.push(e.getAttribute("value"));
+        }
+    });
+
+    let surah_select = document.querySelector(".surah-name");
+    window.onload = () => {add_caption(); select_settings(); document.querySelector(".edit-cont").style.display = "none";}
+    document.querySelector(".surah-name").onchange = () => {select_settings();}
+    document.querySelector(".edit-cont .add-verse").onclick = () => {add_caption(); select_settings();}
+
+
+    document.querySelector(".input-file-cont input").addEventListener('change', function() {
+        let videoFile = this.files[0];
+        let video = document.createElement('video');
+        let reader = new FileReader();
+        reader.onload = function(event) {
+            video.src = event.target.result;
+            video.addEventListener('loadedmetadata', function() {
+                let formData = new FormData();
+                formData.append('videoFile', videoFile);
+                postData(formData, "/upload", "multipart/form-data")
+                .then(response => {
+                    // عندما تحصل على استجابة ناجحة من السيرفر
+                    console.log("تم");
+                })
+                .catch(error => {
+                    console.error('حدث خطأ:', error);
+                });
+
+                document.querySelector(".input-file-cont").style.display = "none";
+                document.querySelector(".edit-cont").style.display = "";
+                let duration = video.duration;
+                video_duration = duration;
+            });
+        };
+        
+        reader.readAsDataURL(videoFile);
+    });
+
+    // عمل المقطع
+    document.querySelector(".edit-cont .submit-edit").onclick = () => {
+        document.querySelector(".edit-cont .submit-edit").style.display = "none";
+
+        let verses_num;
+        let surah_num = surah_values.indexOf(surah_select.value);
+        if(surah_num > -1) {
+            verses_num = quran_translate_sp[surah_values.indexOf(surah_select.value)]["ayat"].length;
+        } else {
+            verses_num = -1;
+        }
+
+        if(verses_num > -1) {
+            let times = [];
+
+            tmp_times = [];
+            document.querySelectorAll(".edit-cont div input").forEach((e) => {
+                tmp_times.push(e.value);
+            });
+
+            tmp_verses_num = [];
+            document.querySelectorAll(".edit-cont div select").forEach((e) => {
+                tmp_verses_num.push(e.value);
+            });
+            
+            if(inArr(tmp_verses_num, "اختر رقم الآية") == false) {
+                let i = 0;
+                while(i < tmp_times.length) {
+                    if(i < tmp_times.length-1) {
+                        tmp_times[i] = [tmp_times[i], tmp_times[i+1]];
+                    } else {
+                        tmp_times[i] = [tmp_times[i], secondsToTime(video_duration)];
+                    }
+                    
+                    i++;
+                }
+                
+                i = 0;
+                while(i < tmp_verses_num.length) {
+                    tmp_verses_num[i] = parseInt(tmp_verses_num[i]);
+                    tmp_verses_num[i] = quran_translate_sp[surah_num]["ayat"][tmp_verses_num[i]-1]["julio_cortes"];
+                    i++;
+                }
+
+                i = 0;
+                while(i < tmp_verses_num.length) {
+                    times.push(tmp_times[i].join("/") + " " + tmp_verses_num[i]);
+                    i++;
+                }
+                times = times.join("\n");
+                
+                postData([times, document.querySelector(".edit-cont .reader-name-input").value], "/make-video")
+                .then(data => {
+                    // عندما تتلقى الاستجابة من الخادم
+                    if (data.success) {
+                        if(document.querySelectorAll(".edit-cont select").length > 1) {
+                            document.querySelector(".edit-cont .download-video").setAttribute("download", `${surah_select.value} - ${document.querySelectorAll(".edit-cont select")[0]}:${document.querySelectorAll(".edit-cont select")[document.querySelectorAll(".edit-cont select").length-1]}.mp4`)
+                        } else {
+                            document.querySelector(".edit-cont .download-video").setAttribute("download", `${surah_select.value}.mp4`)
+                        }
+                        
+                        document.querySelector(".edit-cont .download-video").setAttribute("href", data.data)
+                        document.querySelector(".edit-cont .download-video").style.display = "block";
+                    } else {
+                        console.error('حدث خطأ:', data.error);
+                    }
+                });
+            }
+        }
+    }
+</script>
+</html>
