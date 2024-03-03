@@ -409,6 +409,7 @@
                 
                 postData([times, document.querySelector(".edit-cont .reader-name-input").value], "/make-video")
                 .then(post_data => {
+                    console.log('البينات:', post_data);
                     // عندما تتلقى الاستجابة من الخادم
                     if (post_data.success) {
                         if(document.querySelectorAll(".edit-cont select").length > 1) {
