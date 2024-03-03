@@ -88,6 +88,7 @@ router.post("/make-video", (req, res) => {
     
     pythonProcess.stderr.on('data', (data) => {
         console.error(`stderr: ${data}`);
+        res.json({ success: false, error: data});
     });
 
     pythonProcess.on('close', (code) => {
