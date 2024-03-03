@@ -408,19 +408,19 @@
                 times = times.join("\n");
                 
                 postData([times, document.querySelector(".edit-cont .reader-name-input").value], "/make-video")
-                .then(data => {
+                .then(post_data => {
                     // عندما تتلقى الاستجابة من الخادم
-                    if (data.success) {
+                    if (post_data.success) {
                         if(document.querySelectorAll(".edit-cont select").length > 1) {
                             document.querySelector(".edit-cont .download-video").setAttribute("download", `${surah_select.value} - ${document.querySelectorAll(".edit-cont select")[0]}:${document.querySelectorAll(".edit-cont select")[document.querySelectorAll(".edit-cont select").length-1]}.mp4`)
                         } else {
                             document.querySelector(".edit-cont .download-video").setAttribute("download", `${surah_select.value}.mp4`)
                         }
                         
-                        document.querySelector(".edit-cont .download-video").setAttribute("href", data.data)
+                        document.querySelector(".edit-cont .download-video").setAttribute("href", post_data.data);
                         document.querySelector(".edit-cont .download-video").style.display = "block";
                     } else {
-                        console.error('حدث خطأ:', data.error);
+                        console.error('حدث خطأ:', post_data);
                     }
                 });
             }
