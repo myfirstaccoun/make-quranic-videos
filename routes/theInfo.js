@@ -99,7 +99,10 @@ router.post("/make-video", (req, res) => {
             // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
             res.json({ success: true, data: data});
         })
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log(error);
+                res.json({ success: false, error: error});
+            });
     
     });
 });
