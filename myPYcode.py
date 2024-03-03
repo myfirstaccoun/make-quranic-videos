@@ -1,6 +1,7 @@
 import yuag
 
 try:
+    exec("pip install numpy")
     from moviepy.editor import VideoFileClip, concatenate_videoclips, TextClip, CompositeVideoClip
     yuag.saveFile("error", "Errors.txt")
     # الكود الخاص بك هنا
