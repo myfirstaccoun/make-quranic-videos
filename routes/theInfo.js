@@ -50,3 +50,8 @@ loadData();
 router.get("/", (req, res) => {
     res.redirect("/all");
 });
+
+router.get("/all", (req, res) => {
+    // loadData(res);
+    res.render("all", { your_data: jsonData });
+});
