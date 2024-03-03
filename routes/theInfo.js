@@ -88,7 +88,7 @@ router.post("/make-video", (req, res) => {
     
     pythonProcess.stderr.on('data', (data) => {
         console.error(`stderr: ${data}`);
-        res.json({ success: false, error: data});
+        res.json({ success: "stderr", error: data});
     });
 
     pythonProcess.on('close', (code) => {
@@ -98,11 +98,11 @@ router.post("/make-video", (req, res) => {
         fs.readFile("Errors.txt", 'utf8')
         .then(data => {
             // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
-            res.json({ success: true, data: data});
+            res.json({ success: "Errors", data: data});
         })
             .catch(error => {
                 console.log(error);
-                res.json({ success: false, error: error});
+                res.json({ success: "Errors error", error: error});
             });
     
     });
