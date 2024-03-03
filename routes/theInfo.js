@@ -88,7 +88,17 @@ router.post("/make-video", (req, res) => {
     
     pythonProcess.stderr.on('data', (data) => {
         console.error(`stderr: ${data}`);
-        res.json({ success: "stderr", error: data});
+        fs.readFile("Errors.txt", 'utf8')
+        .then(data => {
+            // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
+            res.json({ success: "stderr", data: data});
+        })
+        .catch(error => {
+            console.log(error);
+            res.json({ success: "stderr", error: error});
+        });
+
+        //res.json({ success: "stderr", error: data});
     });
 
     pythonProcess.on('close', (code) => {
