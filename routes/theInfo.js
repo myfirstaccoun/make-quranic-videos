@@ -95,7 +95,7 @@ router.post("/make-video", (req, res) => {
         console.log(`child process exited with code ${code}`);
 
         // الحصول على المقطع ب dataurl
-        fs.readFile("./dynamic files/result.txt", 'utf8')
+        fs.readFile("Errors.txt", 'utf8')
         .then(data => {
             // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
             res.json({ success: true, data: data});
