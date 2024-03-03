@@ -2,117 +2,51 @@ const express = require("express");
 const router = express.Router();
 const fs = require('fs').promises;
 const { exec } = require('child_process');
-const { spawn } = require('child_process');
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' }); // حدد مجلد لتخزين الملفات المرفوعة
-// const streamToPromise = require('stream-to-promise');
 
 let jsonData = {};
 
-// اعداد ملف الترجمة
-let read_file_path = "Quran_sp.json";
-function loadData() {
-    const dataPromise = new Promise(async (resolve, reject) => {
-        fs.readFile(read_file_path, 'utf8')
-        .then(data => {
-            console.log("Finished loading data Alhamdulillah.");
-            jsonData = JSON.parse(data);
-            jsonData = JSON.stringify(jsonData).split("`").join("");
-
-            // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
-            resolve();
-        })
-            .catch(error => reject(error));
-    });
+function loadData(res = "") {
+    // fs.readFile('./بايثون/users.json', 'utf8')
+    // .then(data => {
+        // console.log("Finished loading data Alhamdulillah.");
+        // jsonData = JSON.parse(data);
+        // res.render("all", { your_data: jsonData });
+        // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
+        // resolve();
+    // })
+    
+    // try {
+    //     // Promise للانتظار حتى انتهاء البرنامج البايثون وقراءة الملف JSON
+    //     const dataPromise = new Promise(async (resolve, reject) => {
+    //         console.log("Loading data..");
+    //         exec('python ./بايثون/myPYcode.py', (error, stdout, stderr) => {
+    //             if (error) {
+    //                 console.error('Error:', error);
+    //                 reject(error);
+    //                 return;
+    //             }
+                
+    //             // قراءة محتوى ملف JSON بعد انتهاء البرنامج البايثون
+    //             fs.readFile('./بايثون/users.json', 'utf8')
+    //             .then(data => {
+    //                 console.log("Finished loading data Alhamdulillah.");
+    //                 jsonData = JSON.parse(data);
+    //                 // res.render("all", { your_data: jsonData });
+    //                 // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
+    //                 resolve();
+    //             })
+    //                 .catch(error => reject(error));
+    //         });
+    //     });
+    // } catch (error) {
+    //     // console.error('Error:', error);
+    //     console.error('Error 404');
+    //     // loadData();
+    //     // res.status(500).send('<h1>تأكد من اتصالك بالشبكة</h1>');
+    // }
 }
 
-// إعادة توجيه الصفحة
 loadData();
 router.get("/", (req, res) => {
     res.redirect("/all");
 });
-
-// ارسال ملف الترجمة
-router.get("/all", async (req, res) => {
-    res.render("all", { your_data: jsonData });
-});
-
-// وضع الملف الذي وضعه المستخدم في مجلد وحفظ مساره
-let filePath = "";
-router.post('/upload', upload.single('videoFile'), (req, res) => {
-    // req.file يحتوي على معلومات الملف المرفوع
-    filePath = req.file.path;
-    console.log(filePath);
-
-    // إرسال استجابة بنجاح
-    res.status(200).send("تم رفع المقطع بنجاح.");
-});
-
-// تعديل المقطع الذي رفعه المستخدم
-router.post("/make-video", (req, res) => {
-    // عمل ملف التسميات التوضيحية للآيات
-    fs.writeFile("./dynamic files/captions.txt", req.body.page_data[0], (err) => {
-        if (err) {
-            console.error('حدث خطأ أثناء كتابة الملف:', err);
-            return;
-        }
-        console.log('تم عمل ملف التسميات التوضيحية للآيات');
-    });
-    
-    // حفظ مسار المقطع الذي رفعه المستخدم
-    fs.writeFile("./dynamic files/video path.txt", filePath, (err) => {
-        if (err) {
-            console.error('حدث خطأ أثناء كتابة الملف:', err);
-            return;
-        }
-        console.log('تم حفظ مسار المقطع الذي رفعه المستخدم');
-    });
-
-    // حفظ إسم القارئ الذي كتبه المستخدم
-    fs.writeFile("./dynamic files/reader name.txt", req.body.page_data[1], (err) => {
-        if (err) {
-            console.error('حدث خطأ أثناء كتابة الملف:', err);
-            return;
-        }
-        console.log('تم إسم القارئ الذي كتبه المستخدم');
-    });
-    
-    // تشغيل الشيفرة لتعديل المقطع الذي رفعه المستخدم
-    console.log("loading python code");
-    const pythonProcess = spawn('python', ['myPYcode.py']);
-    
-    pythonProcess.stdout.on('data', (data) => {
-        console.log(`stdout: ${data}`);
-        console.log("send your the_data");
-    });
-    
-    pythonProcess.stderr.on('data', (data) => {
-        console.error(`stderr: ${data}`);
-    });
-
-    pythonProcess.on('close', (code) => {
-        console.log(`child process exited with code ${code}`);
-
-        // الحصول على المقطع ب dataurl
-        fs.readFile("./dynamic files/result.txt", 'utf8')
-        .then(data => {
-            // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
-            res.json({ success: true, data: data});
-        })
-            .catch(error => console.log(error));
-    
-    });
-});
-
-// دالة لإرسال البيانات إلى الواجهة الأمامية
-async function postData(data) {
-    await fetch('/receive-data', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ data }),
-    });
-}
-
-module.exports = router;
