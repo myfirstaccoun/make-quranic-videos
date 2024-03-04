@@ -67,9 +67,9 @@ try:
             end = item["end"]
     
             if auto_width == True:
-                txt_clip = TextClip(text, fontsize=font_size, color=text_color, bg_color=text_bg_color, method=method, size=(None, None), font=font).set_position(text_position).set_duration(end - start).set_start(start)
+                txt_clip = TextClip(text, fontsize=font_size, color=text_color, bg_color=text_bg_color, method=method, size=(None, None)).set_position(text_position).set_duration(end - start).set_start(start)
             else:
-                txt_clip = TextClip(text, fontsize=font_size, color=text_color, bg_color=text_bg_color, method=method, size=(video_width*text_width, None), font=font).set_position(text_position).set_duration(end - start).set_start(start)
+                txt_clip = TextClip(text, fontsize=font_size, color=text_color, bg_color=text_bg_color, method=method, size=(video_width*text_width, None)).set_position(text_position).set_duration(end - start).set_start(start)
             
             # دمج النص مع مقطع الأصلي
             video = CompositeVideoClip([video, txt_clip])
