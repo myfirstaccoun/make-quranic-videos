@@ -76,19 +76,19 @@ try:
         
         return video
     
-    if __name__ == "__main__":
-        captions = yuag.readFile("./dynamic files/captions.txt")
-        video = add_text(toObj(captions))
-        video = add_text([{"text": reader_name, "start": 0, "end": get_duration()}], text_position=("right", "top"), auto_width=True, video=video, method="label")
-        # IMAGEMAGICK_BINARY = r"C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\ImageMagick-7.1.1-28-Q16-HDRI-x64-dll.exe"
+    # if __name__ == "__main__":
+    captions = yuag.readFile("./dynamic files/captions.txt")
+    video = add_text(toObj(captions))
+    video = add_text([{"text": reader_name, "start": 0, "end": get_duration()}], text_position=("right", "top"), auto_width=True, video=video, method="label")
+    # IMAGEMAGICK_BINARY = r"C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\ImageMagick-7.1.1-28-Q16-HDRI-x64-dll.exe"
+
+    # حفظ المقطع بالنص المضاف
+    video.write_videofile(output_file_path)
+
+    # تحرير الموارد
+    video.close()
     
-        # حفظ المقطع بالنص المضاف
-        video.write_videofile(output_file_path)
-    
-        # تحرير الموارد
-        video.close()
-    
-        # حفظ المقطع ك نصّ dataurl
-        yuag.saveFile(yuag.videoFile_to_dataurl(output_file_path), "./dynamic files/result.txt")
+    # حفظ المقطع ك نصّ dataurl
+    yuag.saveFile(yuag.videoFile_to_dataurl(output_file_path), "./dynamic files/result.txt")
 except Exception as error:
     yuag.saveFile(str(error), "Errors.txt")
