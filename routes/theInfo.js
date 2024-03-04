@@ -123,21 +123,21 @@ router.post("/make-video", (req, res) => {
             // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
             res.json({ success: "fonts", data: data});
         })
-            .catch(error => {
-                console.log(error);
-                res.json({ success: "fonts error", error: error});
-            });
+        .catch(error => {
+            console.log(error);
+            res.json({ success: "fonts error", error: error});
+        });
 
         // الحصول على المقطع ب dataurl
-        // fs.readFile("Errors.txt", 'utf8')
-        // .then(data => {
-        //     // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
-        //     res.json({ success: "Errors", data: data});
-        // })
-        //     .catch(error => {
-        //         console.log(error);
-        //         res.json({ success: "Errors error", error: error});
-        //     });
+        fs.readFile("Errors.txt", 'utf8')
+        .then(data => {
+            // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
+            res.json({ success: "Errors", data: data});
+        })
+            .catch(error => {
+                console.log(error);
+                res.json({ success: "Errors error", error: error});
+            });
     
     });
 });
