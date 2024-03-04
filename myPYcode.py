@@ -1,5 +1,4 @@
 import yuag
-yuag.clear()
 
 try:
     from moviepy.editor import VideoFileClip, concatenate_videoclips, TextClip, CompositeVideoClip
@@ -93,5 +92,3 @@ try:
         yuag.saveFile(yuag.videoFile_to_dataurl(output_file_path), "./dynamic files/result.txt")
 except Exception as error:
     yuag.saveFile(error, "Errors.txt")
-    
-yuag.doneMessage(0)
