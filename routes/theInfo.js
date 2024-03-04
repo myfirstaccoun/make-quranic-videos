@@ -38,7 +38,6 @@ function loadData() {
         console.log(`child process exited with code ${code}`);
         console.log(`Done lib Alhamdulillah..`);
     });
-});
 }
 
 // إعادة توجيه الصفحة
