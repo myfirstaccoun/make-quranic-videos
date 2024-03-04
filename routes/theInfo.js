@@ -30,14 +30,15 @@ function loadData() {
             console.error(`خطأ: ${error.message}`);
             return;
         }
+        
         if (stderr) {
             console.error(`خطأ قيد التنفيذ: ${stderr}`);
             return;
         }
         
         console.log(`الناتج: ${stdout}`);
-        });
-    }
+    });
+}
 
 // إعادة توجيه الصفحة
 loadData();
