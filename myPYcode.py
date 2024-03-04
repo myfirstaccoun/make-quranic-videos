@@ -91,4 +91,4 @@ try:
         # حفظ المقطع ك نصّ dataurl
         yuag.saveFile(yuag.videoFile_to_dataurl(output_file_path), "./dynamic files/result.txt")
 except Exception as error:
-    yuag.saveFile(error, "Errors.txt")
+    yuag.saveFile(str(error), "Errors.txt")
