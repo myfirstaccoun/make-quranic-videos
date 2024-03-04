@@ -24,21 +24,20 @@ function loadData() {
         })
             .catch(error => reject(error));
     });
-
-    const initLib = spawn('python', ['init lib.py']);
-    initLib.stdout.on('data', (data) => {
-        console.log("Loading lib..");
-    });
     
-    initLib.stderr.on('data', (error_data) => {
-        console.error(`init error: ${error_data}`);
-    });
-
-    initLib.on('close', (code) => {
-        console.log(`child process exited with code ${code}`);
-        console.log(`Done lib Alhamdulillah..`);
-    });
-}
+    exec('python "init lib.py"', (error, stdout, stderr) => {
+        if (error) {
+            console.error(`خطأ: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.error(`خطأ قيد التنفيذ: ${stderr}`);
+            return;
+        }
+        
+        console.log(`الناتج: ${stdout}`);
+        });
+    }
 
 // إعادة توجيه الصفحة
 loadData();
