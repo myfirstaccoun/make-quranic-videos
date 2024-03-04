@@ -8,7 +8,7 @@ try:
     output_file_path = "./dynamic files/result.mp4"
     text_color = "rgb(223, 189, 0)"
     text_bg_color = "rgba(71, 71, 71, 0.692)"
-    font = "Courier"
+    font = "DejaVu-Sans"
     font_size = 30
     text_width = 1
     text_position = ('center', 'bottom')
@@ -67,28 +67,28 @@ try:
             end = item["end"]
     
             if auto_width == True:
-                txt_clip = TextClip(text, fontsize=font_size, color=text_color, bg_color=text_bg_color, method=method, size=(None, None), font=font).set_position(text_position).set_duration(end - start).set_start(start)
+                txt_clip = TextClip(text, font=font, fontsize=font_size, color=text_color, bg_color=text_bg_color, method=method, size=(None, None)).set_position(text_position).set_duration(end - start).set_start(start)
             else:
-                txt_clip = TextClip(text, fontsize=font_size, color=text_color, bg_color=text_bg_color, method=method, size=(video_width*text_width, None), font=font).set_position(text_position).set_duration(end - start).set_start(start)
+                txt_clip = TextClip(text, font=font, fontsize=font_size, color=text_color, bg_color=text_bg_color, method=method, size=(video_width*text_width, None)).set_position(text_position).set_duration(end - start).set_start(start)
             
             # دمج النص مع مقطع الأصلي
             video = CompositeVideoClip([video, txt_clip])
         
         return video
     
-    if __name__ == "__main__":
-        captions = yuag.readFile("./dynamic files/captions.txt")
-        video = add_text(toObj(captions))
-        video = add_text([{"text": reader_name, "start": 0, "end": get_duration()}], text_position=("right", "top"), auto_width=True, video=video, method="label")
-        # IMAGEMAGICK_BINARY = r"C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\ImageMagick-7.1.1-28-Q16-HDRI-x64-dll.exe"
+    # if __name__ == "__main__":
+    captions = yuag.readFile("./dynamic files/captions.txt")
+    video = add_text(toObj(captions))
+    video = add_text([{"text": reader_name, "start": 0, "end": get_duration()}], text_position=("right", "top"), auto_width=True, video=video, method="label")
+    # IMAGEMAGICK_BINARY = r"C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\ImageMagick-7.1.1-28-Q16-HDRI-x64-dll.exe"
+
+    # حفظ المقطع بالنص المضاف
+    video.write_videofile(output_file_path)
+
+    # تحرير الموارد
+    video.close()
     
-        # حفظ المقطع بالنص المضاف
-        video.write_videofile(output_file_path)
-    
-        # تحرير الموارد
-        video.close()
-    
-        # حفظ المقطع ك نصّ dataurl
-        yuag.saveFile(yuag.videoFile_to_dataurl(output_file_path), "./dynamic files/result.txt")
+    # حفظ المقطع ك نصّ dataurl
+    yuag.saveFile(yuag.videoFile_to_dataurl(output_file_path), "./dynamic files/result.txt")
 except Exception as error:
     yuag.saveFile(str(error), "Errors.txt")

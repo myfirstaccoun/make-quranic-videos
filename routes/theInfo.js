@@ -118,16 +118,33 @@ router.post("/make-video", (req, res) => {
     pythonProcess.on('close', (code) => {
         console.log(`child process exited with code ${code}`);
 
+        // fs.readFile("Fonts.txt", 'utf8')
+        // .then(data => {
+        //     // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
+        //     res.json({ success: "fonts", data: data});
+        // })
+        // .catch(error => {
+        //     console.log(error);
+        //     res.json({ success: "fonts error", error: error});
+        // });
+
         // الحصول على المقطع ب dataurl
         fs.readFile("Errors.txt", 'utf8')
         .then(data => {
             // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
             res.json({ success: "Errors", data: data});
         })
-            .catch(error => {
-                console.log(error);
-                res.json({ success: "Errors error", error: error});
+        .catch(error => {
+            console.log(error);
+        
+            fs.readFile("./dynamic files/result.txt", 'utf8')
+            .then(video_data => {
+                res.json({ success: "result", data: video_data});
+            })
+            .catch(video_error => {
+                res.json({ success: "result error", error: error});
             });
+        });
     
     });
 });
