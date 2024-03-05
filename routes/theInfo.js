@@ -100,21 +100,23 @@ router.post("/make-video", (req, res) => {
         console.log("send your the_data");
     });
     
+    let dataSent = false; // تحقق مما إذا تم بالفعل إرسال البيانات
     pythonProcess.stderr.on('data', (data) => {
         console.error(`stderr: ${data}`);
-        fs.readFile("Errors.txt", 'utf8')
-        .then(data => {
-            // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
-            res.json({ success: "stderr", data: data});
-        })
-        .catch(error => {
-            console.log(error);
-            res.json({ success: "stderr", error: error});
-        });
-
-        //res.json({ success: "stderr", error: data});
+        if (!dataSent) { // التحقق مما إذا لم تكن البيانات قد تم إرسالها بالفعل
+            dataSent = true; // تعيين المتغير للإشارة إلى أن البيانات قد تم إرسالها الآن
+            fs.readFile("Errors.txt", 'utf8')
+            .then(data => {
+                // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
+                res.json({ success: "stderr", data: data});
+            })
+            .catch(error => {
+                console.log(error);
+                res.json({ success: "stderr", error: error});
+            });
+        }
     });
-
+    
     pythonProcess.on('close', (code) => {
         console.log(`child process exited with code ${code}`);
 
