@@ -1,6 +1,7 @@
 import yuag
 
 try:
+    yuag.saveFile("result text", "./dynamic files/result.txt")
     from moviepy.editor import VideoFileClip, concatenate_videoclips, TextClip, CompositeVideoClip
     
     input_file_path = yuag.readFile("./dynamic files/video path.txt")
@@ -77,16 +78,22 @@ try:
         return video
     
     # if __name__ == "__main__":
+    yuag.saveFile("result text2", "./dynamic files/result.txt")
     captions = yuag.readFile("./dynamic files/captions.txt")
+    yuag.saveFile("result text3", "./dynamic files/result.txt")
     video = add_text(toObj(captions))
+    yuag.saveFile("result text4", "./dynamic files/result.txt")
     video = add_text([{"text": reader_name, "start": 0, "end": get_duration()}], text_position=("right", "top"), auto_width=True, video=video, method="label")
+    yuag.saveFile("result text5", "./dynamic files/result.txt")
     # IMAGEMAGICK_BINARY = r"C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\ImageMagick-7.1.1-28-Q16-HDRI-x64-dll.exe"
 
     # حفظ المقطع بالنص المضاف
     video.write_videofile(output_file_path)
+    yuag.saveFile("result text6", "./dynamic files/result.txt")
 
     # تحرير الموارد
     video.close()
+    yuag.saveFile("result text7", "./dynamic files/result.txt")
     
     # حفظ المقطع ك نصّ dataurl
     yuag.saveFile(yuag.videoFile_to_dataurl(output_file_path), "./dynamic files/result.txt")
