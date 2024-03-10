@@ -84,6 +84,7 @@ try:
     yuag.saveFile("result text3", "./dynamic files/result.txt")
     video = add_text(toObj(captions))
     yuag.saveFile("result text4", "./dynamic files/result.txt")
+    print(get_duration())
     video = add_text([{"text": reader_name, "start": 0, "end": get_duration()}], text_position=("right", "top"), auto_width=True, video=video, method="label")
     yuag.saveFile("result text5", "./dynamic files/result.txt")
     # IMAGEMAGICK_BINARY = r"C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\ImageMagick-7.1.1-28-Q16-HDRI-x64-dll.exe"
