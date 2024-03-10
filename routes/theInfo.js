@@ -77,9 +77,11 @@ router.post("/make-video", (req, res) => {
     fs.writeFile("./dynamic files/video path.txt", filePath, (err) => {
         if (err) {
             console.error('حدث خطأ أثناء كتابة الملف:', err);
+            console.log('حدث خطأ أثناء كتابة الملف:', err);
             return;
         }
         console.log('تم حفظ مسار المقطع الذي رفعه المستخدم');
+        console.log("done video path.txt");
     });
 
     // حفظ إسم القارئ الذي كتبه المستخدم
@@ -100,52 +102,45 @@ router.post("/make-video", (req, res) => {
         console.log("send your the_data");
     });
     
+    let dataSent = false; // تحقق مما إذا تم بالفعل إرسال البيانات
     pythonProcess.stderr.on('data', (data) => {
         console.error(`stderr: ${data}`);
-        fs.readFile("Errors.txt", 'utf8')
-        .then(data => {
-            // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
-            res.json({ success: "stderr", data: data});
-        })
-        .catch(error => {
-            console.log(error);
-            res.json({ success: "stderr", error: error});
-        });
-
-        //res.json({ success: "stderr", error: data});
+        if (!dataSent) { // التحقق مما إذا لم تكن البيانات قد تم إرسالها بالفعل
+            dataSent = true; // تعيين المتغير للإشارة إلى أن البيانات قد تم إرسالها الآن
+            fs.readFile("Errors.txt", 'utf8')
+            .then(data => {
+                // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
+                res.json({ success: "stderr", data: data});
+            })
+            .catch(error => {
+                console.log(error);
+                res.json({ success: "stderr", error: error});
+            });
+        }
     });
+    
 
     pythonProcess.on('close', (code) => {
         console.log(`child process exited with code ${code}`);
-
-        // fs.readFile("Fonts.txt", 'utf8')
-        // .then(data => {
-        //     // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
-        //     res.json({ success: "fonts", data: data});
-        // })
-        // .catch(error => {
-        //     console.log(error);
-        //     res.json({ success: "fonts error", error: error});
-        // });
-
-        // الحصول على المقطع ب dataurl
-        fs.readFile("Errors.txt", 'utf8')
-        .then(data => {
-            // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
-            res.json({ success: "Errors", data: data});
-        })
-        .catch(error => {
-            console.log(error);
-        
-            fs.readFile("./dynamic files/result.txt", 'utf8')
-            .then(video_data => {
-                res.json({ success: "result", data: video_data});
+        if (!dataSent) { // التحقق مما إذا لم تكن البيانات قد تم إرسالها بالفعل
+            dataSent = true; // تعيين المتغير للإشارة إلى أن البيانات قد تم إرسالها الآن
+            fs.readFile("Errors.txt", 'utf8')
+            .then(data => {
+                // إرسال البيانات إلى الصفحة بعد الانتهاء من البرنامج البايثون
+                res.json({ success: "Errors", data: data});
             })
-            .catch(video_error => {
-                res.json({ success: "result error", error: error});
+            .catch(error => {
+                console.log(error);
+            
+                fs.readFile("./dynamic files/result.txt", 'utf8')
+                .then(video_data => {
+                    res.json({ success: "result", data: video_data});
+                })
+                .catch(video_error => {
+                    res.json({ success: "result error", error: error});
+                });
             });
-        });
-    
+        }
     });
 });
 

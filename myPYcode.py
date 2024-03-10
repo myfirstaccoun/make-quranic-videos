@@ -5,6 +5,7 @@ try:
     from moviepy.editor import VideoFileClip, concatenate_videoclips, TextClip, CompositeVideoClip
     
     input_file_path = yuag.readFile("./dynamic files/video path.txt")
+    print("Python: " + input_file_path)
     reader_name = yuag.readFile("./dynamic files/reader name.txt")
     output_file_path = "./dynamic files/result.mp4"
     text_color = "rgb(223, 189, 0)"
