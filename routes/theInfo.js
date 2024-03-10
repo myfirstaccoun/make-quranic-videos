@@ -77,9 +77,11 @@ router.post("/make-video", (req, res) => {
     fs.writeFile("./dynamic files/video path.txt", filePath, (err) => {
         if (err) {
             console.error('حدث خطأ أثناء كتابة الملف:', err);
+            console.log('حدث خطأ أثناء كتابة الملف:', err);
             return;
         }
         console.log('تم حفظ مسار المقطع الذي رفعه المستخدم');
+        console.log("done video path.txt");
     });
 
     // حفظ إسم القارئ الذي كتبه المستخدم
